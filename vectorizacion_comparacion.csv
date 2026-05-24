@@ -1,0 +1,4 @@
+Método,Tipo,Dimensión,Densidad,Contexto,Interpretabilidad,Uso Típico
+Bag-of-Words,Conteos,100,2.1%,No,Alta,Clasificación
+TF-IDF,Ponderación,100,2.1%,No,Alta,Búsqueda
+Word2Vec,Embedding,50,100% (Denso),Sí (ventana),Baja,Semántica

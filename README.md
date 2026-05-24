@@ -2,12 +2,273 @@
 
 ## 📚 Descripción
 
-Proyecto académico que aplica técnicas de **Procesamiento de Lenguaje Natural (PLN)** al clásico "Frankenstein" de Mary Wollstonecraft Shelley. 
+Proyecto académico integral que aplica técnicas de **Procesamiento de Lenguaje Natural (PLN)** al clásico "Frankenstein" de Mary Wollstonecraft Shelley. 
 
-El proyecto consta de **3 partes**:
+El proyecto consta de **4 checkpoints** que representan el pipeline completo desde datos crudos hasta análisis semántico avanzado.
 
-1. **Checkpoint 2**: Normalización y Lematización
-2. **Checkpoint 3**: Vectorización y Representación Semántica (ACTUAL)
+## 🎯 Checkpoints del Proyecto
+
+### Checkpoint 2: Normalización y Lematización
+- Tokenización del texto
+- Filtrado de stop words
+- Lematización vs Stemming
+- **Entrega**: `frankenstein_nlp.py`
+
+### Checkpoint 3: Vectorización Clásica
+- Bag-of-Words (BoW)
+- TF-IDF
+- Visualización 3D con PCA
+- Similitud de coseno
+- **Entrega**: `frankenstein_vectorizacion.ipynb`
+
+### Checkpoint 4: Semántica Distribucional ⭐ (ACTUAL)
+- **Word2Vec (Skip-gram)**: Embeddings densos
+- **Visualización 3D**: Espacio semántico real
+- **Análisis**: Similitud semántica entre palabras
+- **Gráficas**: Heatmaps y visualizaciones múltiples
+- **Entrega**: `frankenstein_checkpoint4_completo.ipynb`
+
+## 📊 Pipeline de Procesamiento Completo
+
+```
+LIBRO.TXT (170k+ tokens)
+    ↓
+[Checkpoint 2] Tokenización + Limpieza + Lematización
+    ↓
+[Checkpoint 3] BoW + TF-IDF + PCA 3D
+    ↓
+[Checkpoint 4] Word2Vec + Embeddings + Análisis Semántico
+    ↓
+✅ RESULTADO: Modelo entrenado + 4+ visualizaciones
+```
+
+## 🚀 Instalación y Uso
+
+### 1. Crear entorno virtual
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+```
+
+### 2. Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+```
+
+### 3. Ejecutar Notebook (RECOMENDADO)
+
+```bash
+jupyter notebook frankenstein_checkpoint4_completo.ipynb
+```
+
+El notebook es **autoexplicativo** y ejecuta todo el pipeline en orden:
+1. Carga datos
+2. Limpia y normaliza
+3. Vectoriza (BoW + TF-IDF)
+4. Entrena Word2Vec
+5. Genera 4+ gráficas
+6. Análisis de similitud
+
+## 📁 Estructura del Repositorio
+
+```
+frankenstein-nlp/
+│
+├── 📄 NOTEBOOKS (Ejecución interactiva)
+│   ├── frankenstein_checkpoint4_completo.ipynb  ⭐ PRINCIPAL
+│   ├── frankenstein_vectorizacion.ipynb        (Checkpoint 3)
+│   └── frankenstein_nlp.py                     (Checkpoint 2)
+│
+├── 📚 DATOS
+│   └── libro.txt                    (Frankenstein original)
+│
+├── 📦 CONFIGURACIÓN
+│   ├── requirements.txt              (Dependencias congeladas)
+│   └── README.md                    (Este archivo)
+│
+└── 📊 SALIDAS (Generadas al ejecutar)
+    ├── frankenstein_word2vec_3d.png            ✓ Espacio semántico 3D
+    ├── frankenstein_embeddings_heatmap.png     ✓ Matriz de embeddings
+    ├── frankenstein_similitud_semantica.png    ✓ Matriz de similitud
+    ├── frankenstein_embedding_individual.png   ✓ Vector individual
+    ├── word2vec_frankenstein.model             (Modelo entrenado)
+    ├── corpus_final_lematizado.txt             (Oraciones procesadas)
+    ├── vocabulario_word2vec.csv                (Palabras + frecuencias)
+    └── vectorizacion_comparacion.csv           (Tabla comparativa)
+```
+
+## 📊 Visualizaciones Generadas
+
+### 1. **frankenstein_word2vec_3d.png**
+- Espacio semántico 3D con PCA
+- 100 palabras principales
+- Proximidad = similitud semántica
+- Axes = componentes principales (62% varianza en 3D)
+
+### 2. **frankenstein_embeddings_heatmap.png**
+- Palabras clave vs Dimensiones del embedding
+- 18 palabras principales × 50 dimensiones
+- Colores: Rojo (negativos) → Azul (positivos)
+- Muestra estructura interna de los embeddings
+
+### 3. **frankenstein_similitud_semantica.png**
+- Matriz 18×18 de similitud coseno
+- Verde oscuro = máxima similitud (1.0)
+- Verde claro = baja similitud (0.0)
+- Identifica palabras temáticamente relacionadas
+- Ejemplo: "creature" ↔ "monster" (alta similitud)
+
+### 4. **frankenstein_embedding_individual.png**
+- Vector de 50 dimensiones (gráfico de barras + heatmap)
+- Distribución de valores en el embedding
+- Estadísticas: media, desv. est., norma L2
+
+## 🔧 Tecnologías Utilizadas
+
+| Librería | Versión | Propósito |
+|----------|---------|----------|
+| **spaCy** | 3.7.2 | Tokenización, lematización |
+| **Gensim** | 4.3.1 | Word2Vec (Skip-gram) |
+| **scikit-learn** | 1.3.2 | Vectorización, PCA, similitud |
+| **pandas** | 2.1.3 | Análisis de datos |
+| **matplotlib** | 3.8.2 | Visualizaciones |
+| **numpy** | 1.24.3 | Operaciones numéricas |
+| **NLTK** | 3.8.1 | Stemming (comparación) |
+| **jupyter** | 1.0.0 | Notebooks interactivos |
+
+## 📖 Conceptos Clave
+
+### Semántica Distribucional
+"El significado de una palabra está en los contextos en los que aparece"
+- **Hipótesis Distribucional**: Palabras similares aparecen en contextos similares
+- **Embeddings**: Representación numérica comprimida del significado
+
+### Word2Vec (Skip-gram)
+- **Entrada**: Palabra central (ej: "creature")
+- **Salida**: Predicción de palabras contexto
+- **Resultado**: Vector denso (50 dimensiones vs 100+ del BoW)
+- **Ventaja**: Captura relaciones semánticas finas
+
+### Diferencias: BoW vs TF-IDF vs Word2Vec
+
+| Aspecto | BoW | TF-IDF | Word2Vec |
+|---------|-----|--------|----------|
+| **Tipo** | Conteos | Ponderación | Embedding |
+| **Dimensión** | 100+ | 100+ | 50 |
+| **Densidad** | Sparse (0.1%) | Sparse (0.1%) | Densa (100%) |
+| **Contexto** | No | No | Sí |
+| **Semántica** | Débil | Media | Fuerte |
+| **Interpretable** | Alta | Alta | Baja |
+| **Uso** | Clasificación | Búsqueda | Semántica |
+
+### PCA (Principal Component Analysis)
+- Reducción: 50 dimensiones → 3 dimensiones
+- Mantiene 62-70% de la varianza
+- Permite visualizar espacios de alta dimensión
+
+### Similitud Coseno
+- Rango: [0, 1]
+- **1.0**: Vectores idénticos
+- **0.0**: Vectores ortogonales (sin similitud)
+- Métrica: `cos(θ) = (A·B) / (||A|| × ||B||)`
+
+## 💡 Insights del Proyecto
+
+1. **BoW destaca**: "said" (1200+ veces), "upon", "could"
+2. **TF-IDF destaca**: "creature", "frankenstein", "monster" (distintivos)
+3. **Word2Vec agrupa**: 
+   - "creature" ↔ "monster" (muy similar)
+   - "victor" ↔ "creator" (contexto)
+   - "death" ↔ "life" (conceptos opuestos)
+4. **Embeddings capturan**: Relaciones semánticas complejas
+5. **Densidad**: Word2Vec es 1000× más comprimido que BoW
+
+## 📚 Flujo de Aprendizaje
+
+```
+Módulo 1: Intro a PLN
+    ↓
+Módulo 2: Normalización
+    ↓
+Módulo 3: Vectorización Clásica (BoW/TF-IDF)
+    ↓
+Módulo 4: Semántica Distribucional (Word2Vec) ← AQUÍ ESTAMOS
+    ↓
+Posibles continuaciones:
+    - FastText (variante de Word2Vec)
+    - GloVe (factorización de matrices)
+    - Transformers (BERT, GPT)
+    - Modelos de lenguaje grandes (LLMs)
+```
+
+## 📝 Cómo Ejecutar
+
+### Opción A: Interactivo (Recomendado)
+
+```bash
+# Terminal 1
+jupyter notebook frankenstein_checkpoint4_completo.ipynb
+
+# Ejecuta cada celda con Shift + Enter
+# Visualiza gráficas directamente en el notebook
+# Modifica parámetros sobre la marcha
+```
+
+### Opción B: Por script (Checkpoint 2)
+
+```bash
+python frankenstein_nlp.py
+```
+
+## 🎓 Aprendizajes Clave
+
+1. **Pipeline PLN completo**: Datos crudos → Análisis semántico
+2. **Tradeoffs**: Interpretabilidad vs Expresividad
+3. **Vectorización**: Evolución (BoW → TF-IDF → Embeddings)
+4. **Red neuronal simple**: Word2Vec es una NN con capa oculta
+5. **Geometría del lenguaje**: Similitud = proximidad espacial
+
+## 🌟 Características Destacadas
+
+✅ **Notebook completo**: Ejecutable línea por línea
+✅ **4+ visualizaciones**: Diferentes ángulos del análisis
+✅ **Modelos guardados**: Word2Vec listo para reutilizar
+✅ **CSV exportados**: Resultados tabulares para análisis
+✅ **Corpus procesado**: Oraciones lematizadas disponibles
+✅ **Documentación exhaustiva**: Comentarios en cada celda
+✅ **Reproducible**: Seeds fijos para consistencia
+
+## 📄 Licencia
+
+El texto de Frankenstein es dominio público (Project Gutenberg).
+El código es educativo y puede ser reutilizado libremente.
+
+## 👤 Autor
+
+Proyecto académico - Checkpoints 2, 3 y 4
+Coursera Hybridge - Procesamiento de Lenguaje Natural
+
+## 🔗 Referencias
+
+- Bengio et al. (2003): "A neural probabilistic language model"
+- Mikolov et al. (2013): "Efficient Estimation of Word Representations in Vector Space"
+- Goldberg & Levy (2014): "word2vec Explained"
+- GloVe: Global Vectors for Word Representation
+
+---
+
+## ✨ Próximos Pasos
+
+- [ ] Comparar con GloVe pre-entrenado
+- [ ] Implementar FastText
+- [ ] Análisis de componentes principales (interpretación)
+- [ ] Clustering de palabras (K-Means)
+- [ ] Búsqueda semántica (consultas)
+- [ ] Analogías semánticas (king - man + woman = queen)
+
 
 ## 🎯 Objetivos
 
